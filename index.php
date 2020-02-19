@@ -137,159 +137,24 @@ shuffle($array_num);
 <!-- portfolio grid section -->
 <section id="portfolio" class="section portfolio">
 	<div class="container-fluid">
-		<div class="row">
+		<?php for($i=0; $i < 10; $i++): ?>
 			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[0] ?>" class="portfolio-link">
+				<a href="work-details.php?id=<?php echo $array_num[$i] ?>" class="portfolio-link">
 					<!-- ここから画像 -->
 					<div class="caption">
 						<div class="caption-content">
 							<h3>
-								<?php print_r($array[$array_num[0]]->Title); ?>
+								<?php print_r($array[$array_num[$i]]->Title); ?>
 							</h3>
 							<h4>
-								<?php print_r($array[$array_num[0]]->RyokanName); ?>
+								<?php print_r($array[$array_num[$i]]->RyokanName); ?>
 							</h4>
 						</div>
 					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[0]]->img); ?>" class="img-responsive" alt="">
-				</a> 
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[1] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[1]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[1]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[1]]->img); ?>" class="img-responsive" alt="">
+					<img src="images/upload/<?php print_r($array[$array_num[$i]]->img); ?>" class="img-responsive" alt="">
 				</a>
 			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[2] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[2]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[2]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[2]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[3] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[3]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[3]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[3]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[4] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[4]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[4]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[4]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[5] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[5]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[5]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[5]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[6] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[6]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[6]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[6]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[7] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[7]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[7]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[7]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[8] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[8]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[8]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[8]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-			<div class="col-sm-6 portfolio-item">
-				<a href="work-details.php?id=<?php echo $array_num[9] ?>" class="portfolio-link">
-					<div class="caption">
-						<div class="caption-content">
-							<h3>
-								<?php print_r($array[$array_num[9]]->Title); ?>
-							</h3>
-							<h4>
-								<?php print_r($array[$array_num[9]]->RyokanName); ?>
-							</h4>
-						</div>
-					</div>
-					<img src="images/upload/<?php print_r($array[$array_num[9]]->img); ?>" class="img-responsive" alt="">
-				</a>
-			</div>
-		</div>
+		<?php endfor; ?> 
 	</div>
 </section>
 <!-- portfolio grid section --> 
