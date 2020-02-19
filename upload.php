@@ -28,7 +28,7 @@ if( !empty($_FILES['file_img']['tmp_name']) ) {
 	if( $upload_res !== true ) {
 		$error[] = 'ファイルのアップロードに失敗しました。';
 	} else {
-		$file = $_FILES['file_img']['name'];
+		$file = FILE_DIR . $_FILES['file_img']['name'];
 
 		//元の画像のサイズを取得する
 		
