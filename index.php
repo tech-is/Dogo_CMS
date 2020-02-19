@@ -41,7 +41,7 @@ shuffle($array_num);
 					<li><a href="#portfolio">Gallary</a></li>
 					<li><a href="#portfolio">Impression</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li><a href="/upload.php">Upload</a></li>
+					<li><a href="/Dogo_CMS/upload.php">Upload</a></li>
 				</ul>
 			</nav>
 			<a href="#" class="nav-toggle">Menu<span></span></a>
