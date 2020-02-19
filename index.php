@@ -137,6 +137,29 @@ shuffle($array_num);
 <!-- portfolio grid section -->
 <section id="portfolio" class="section portfolio">
 	<div class="container-fluid">
+	<div class='row'>
+	<?php if($cnt == 0): ?>
+	<p>画像はまだありません</p>
+	<?php elseif($cnt < 10): ?>
+		<?php for($i=0; $i <= $cnt; $i++): ?>
+			<div class="col-sm-6 portfolio-item">
+				<a href="work-details.php?id=<?php echo $array_num[$i] ?>" class="portfolio-link">
+					<!-- ここから画像 -->
+					<div class="caption">
+						<div class="caption-content">
+							<h3>
+								<?php print_r($array[$array_num[$i]]->Title); ?>
+							</h3>
+							<h4>
+								<?php print_r($array[$array_num[$i]]->RyokanName); ?>
+							</h4>
+						</div>
+					</div>
+					<img src="images/upload/<?php print_r($array[$array_num[$i]]->img); ?>" class="img-responsive" alt="">
+				</a>
+			</div>
+		<?php endfor; ?> 
+	<?php else: ?>
 		<?php for($i=0; $i < 10; $i++): ?>
 			<div class="col-sm-6 portfolio-item">
 				<a href="work-details.php?id=<?php echo $array_num[$i] ?>" class="portfolio-link">
@@ -155,6 +178,8 @@ shuffle($array_num);
 				</a>
 			</div>
 		<?php endfor; ?> 
+		<?php endif; ?>
+	</div>
 	</div>
 </section>
 <!-- portfolio grid section --> 
