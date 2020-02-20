@@ -41,7 +41,7 @@ shuffle($array_num);
 					<li><a href="#portfolio">Gallary</a></li>
 					<li><a href="#portfolio">Impression</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li><a href="/Dogo_CMS/upload.php">Upload</a></li>
+					<li><a href="/upload.php">Upload</a></li>
 				</ul>
 			</nav>
 			<a href="#" class="nav-toggle">Menu<span></span></a>
@@ -138,7 +138,7 @@ shuffle($array_num);
 <section id="portfolio" class="section portfolio">
 	<div class="container-fluid">
 	<div class='row'>
-	<?php if($cnt == 0): ?>
+	<?php if($cnt == -1): ?>
 	<p>画像はまだありません</p>
 	<?php elseif($cnt < 10): ?>
 		<?php for($i=0; $i <= $cnt; $i++): ?>

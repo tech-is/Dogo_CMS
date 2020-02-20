@@ -1,7 +1,5 @@
 <?php
-/*************************************
- * 画像アップロードシステム
- *************************************/
+//画像の保存先
 define( "FILE_DIR", "images/upload/");
 
 // 変数の初期化
@@ -19,73 +17,51 @@ if( !empty($_POST) ) {
 if( !empty($_POST['btn_confirm']) ) {
 	$error = validation($clean);
 
-	
+	// ファイルのアップロード
+	if( !empty($_FILES['file_img']['tmp_name']) ) {
+		$upload_res = move_uploaded_file( $_FILES['file_img']['tmp_name'], FILE_DIR.$_FILES['file_img']['name']);
+		if( $upload_res !== true ) {
+			$error[] = 'ファイルのアップロードに失敗しました。';
+		} else {
+			$file = FILE_DIR.$_FILES['file_img']['name'];
 
+			//元の画像のサイズを取得する
+			list($width, $hight) = getimagesize($file);
+			if($width > $hight){
+			
+				$diff  = ($width - $hight) * 0.5; 
+				$diffW = $hight;
+				$diffH = $hight;
+				$diffY = 0;
+				$diffX = $diff;
+			
+			}elseif($width < $hight){
+		
+				$diff  = ($hight - $width) * 0.5; 
+				$diffW = $width;
+				$diffH = $width;
+				$diffY = $diff;
+				$diffX = 0;
+			
+			}elseif($width === $hight){
 
-// ファイルのアップロード
-if( !empty($_FILES['file_img']['tmp_name']) ) {
-	$upload_res = move_uploaded_file( $_FILES['file_img']['tmp_name'], FILE_DIR.$_FILES['file_img']['name']);
-	if( $upload_res !== true ) {
-		$error[] = 'ファイルのアップロードに失敗しました。';
-	} else {
-		$file = $_FILES['file_img']['name'];
-
-		//元の画像のサイズを取得する
-		
-		list($width, $hight) = getimagesize($file);
-		
-		
-		
-		//元画像の縦横の大きさを比べてどちらかにあわせる
-		
-		// なおかつ縦横の差をコピー開始位置として使えるようセット
-		
-		if($width > $hight){
-		
-			$diff  = ($width - $hight) * 0.5; 
-			$diffW = $hight;
-			$diffH = $hight;
-			$diffY = 0;
-			$diffX = $diff;
-		
-		}elseif($width < $hight){
-	
-			$diff  = ($hight - $width) * 0.5; 
-			$diffW = $width;
-			$diffH = $width;
-			$diffY = $diff;
-			$diffX = 0;
-		
-		}elseif($width === $hight){
-
-			$diffW = $width;
-			$diffH = $hight;
-			$diffY = 0;
-			$diffX = 0;	
+				$diffW = $width;
+				$diffH = $hight;
+				$diffY = 0;
+				$diffX = 0;	
+			}
+			//サムネイルのサイズ
+			$thumbW = 4032;
+			$thumbH = 3024;
+			//サムネイルになる土台の画像を作る
+			$thumbnail = imagecreatetruecolor($thumbW, $thumbH);
+			//元の画像を読み込む
+			$baseImage = imagecreatefromjpeg($file);
+			//サムネイルになる土台の画像に合わせて元の画像を縮小しコピーペーストする
+			imagecopyresampled($thumbnail, $baseImage, 0, 0, $diffX, $diffY, $thumbW, $thumbH, $diffW, $diffH);
+			imagejpeg($thumbnail, $_FILES['file_img']['name'], 100);
+			$clean['file_img'] = $_FILES['file_img']['name'];
 		}
-		//サムネイルのサイズ
-		
-		$thumbW = 4032;
-		
-		$thumbH = 3024;
-
-		//サムネイルになる土台の画像を作る
-		
-		$thumbnail = imagecreatetruecolor($thumbW, $thumbH);
-		
-		//元の画像を読み込む
-		
-		$baseImage = imagecreatefromjpeg($file);
-		
-		//サムネイルになる土台の画像に合わせて元の画像を縮小しコピーペーストする
-		
-		imagecopyresampled($thumbnail, $baseImage, 0, 0, $diffX, $diffY, $thumbW, $thumbH, $diffW, $diffH);
-		
-		
-		imagejpeg($thumbnail, $_FILES['file_img']['name'], 100);
-
-		$clean['file_img'] = $_FILES['file_img']['name'];
-	}
 }
 
 if( empty($error) ) {
@@ -224,11 +200,11 @@ function validation($data) {
 <body>
 <h1>Upload Form</h1>
 <!-- 完了画面 -->
+
 <?php if( $page_flag === 1 ): ?>
-<p>送信が完了しました。</p>
+	<p>送信が完了しました。</p>
+	<button class="btn"><a href='/'>戻る</a></button>
 <?php
-
-
 	$obj = file_get_contents('store.json');
 	$data_array = json_decode($obj);
 	$input = array(
@@ -244,12 +220,12 @@ function validation($data) {
 ?>
 <?php else: ?>
 	<?php if( !empty($error) ): ?>
-<ul class="error_list">
-<?php foreach( $error as $value ): ?>
-	<li><?php echo $value; ?></li>
-<?php endforeach; ?>
-</ul>
-<?php endif; ?>
+		<ul class="error_list">
+		<?php foreach( $error as $value ): ?>
+			<li><?php echo $value; ?></li>
+		<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
 <form method="post" action="" enctype="multipart/form-data">
 <div class="element_wrap">
 	<label>Title</label>
