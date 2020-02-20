@@ -23,43 +23,43 @@ if( !empty($_POST['btn_confirm']) ) {
 		if( $upload_res !== true ) {
 			$error[] = 'ファイルのアップロードに失敗しました。';
 		} else {
-			$file = FILE_DIR.$_FILES['file_img']['name'];
+			// $file = FILE_DIR.$_FILES['file_img']['name'];
 
-			//元の画像のサイズを取得する
-			list($width, $hight) = getimagesize($file);
-			if($width > $hight){
+			// //元の画像のサイズを取得する
+			// list($width, $hight) = getimagesize($file);
+			// if($width > $hight){
 			
-				$diff  = ($width - $hight) * 0.5; 
-				$diffW = $hight;
-				$diffH = $hight;
-				$diffY = 0;
-				$diffX = $diff;
+			// 	$diff  = ($width - $hight) * 0.5; 
+			// 	$diffW = $hight;
+			// 	$diffH = $hight;
+			// 	$diffY = 0;
+			// 	$diffX = $diff;
 			
-			}elseif($width < $hight){
+			// }elseif($width < $hight){
 		
-				$diff  = ($hight - $width) * 0.5; 
-				$diffW = $width;
-				$diffH = $width;
-				$diffY = $diff;
-				$diffX = 0;
+			// 	$diff  = ($hight - $width) * 0.5; 
+			// 	$diffW = $width;
+			// 	$diffH = $width;
+			// 	$diffY = $diff;
+			// 	$diffX = 0;
 			
-			}elseif($width === $hight){
+			// }elseif($width === $hight){
 
-				$diffW = $width;
-				$diffH = $hight;
-				$diffY = 0;
-				$diffX = 0;	
-			}
-			//サムネイルのサイズ
-			$thumbW = 4032;
-			$thumbH = 3024;
-			//サムネイルになる土台の画像を作る
-			$thumbnail = imagecreatetruecolor($thumbW, $thumbH);
-			//元の画像を読み込む
-			$baseImage = imagecreatefromjpeg($file);
-			//サムネイルになる土台の画像に合わせて元の画像を縮小しコピーペーストする
-			imagecopyresampled($thumbnail, $baseImage, 0, 0, $diffX, $diffY, $thumbW, $thumbH, $diffW, $diffH);
-			imagejpeg($thumbnail, $_FILES['file_img']['name'], 100);
+			// 	$diffW = $width;
+			// 	$diffH = $hight;
+			// 	$diffY = 0;
+			// 	$diffX = 0;	
+			// }
+			// //サムネイルのサイズ
+			// $thumbW = 4032;
+			// $thumbH = 3024;
+			// //サムネイルになる土台の画像を作る
+			// $thumbnail = imagecreatetruecolor($thumbW, $thumbH);
+			// //元の画像を読み込む
+			// $baseImage = imagecreatefromjpeg($file);
+			// //サムネイルになる土台の画像に合わせて元の画像を縮小しコピーペーストする
+			// imagecopyresampled($thumbnail, $baseImage, 0, 0, $diffX, $diffY, $thumbW, $thumbH, $diffW, $diffH);
+			// imagejpeg($thumbnail, $_FILES['file_img']['name'], 100);
 			$clean['file_img'] = $_FILES['file_img']['name'];
 		}
 }

@@ -2,11 +2,15 @@
 //uploadしたデータを取得する
 $data = file_get_contents('store.json');
 $array = json_decode($data);
-$cnt = count($array) - 1;
+if(!empty($array)){
+	$cnt = count($array) - 1;
+	//シャッフルのロジック
+	$array_num = range(0,$cnt);
+	shuffle($array_num);
+}else{
+	$cnt = -1;
+}
 
-//シャッフルのロジック
-$array_num = range(0,$cnt);
-shuffle($array_num);
 
 ?>
 
