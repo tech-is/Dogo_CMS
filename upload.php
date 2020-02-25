@@ -23,43 +23,6 @@ if( !empty($_POST['btn_confirm']) ) {
 		if( $upload_res !== true ) {
 			$error[] = 'ファイルのアップロードに失敗しました。';
 		} else {
-			// $file = FILE_DIR.$_FILES['file_img']['name'];
-
-			// //元の画像のサイズを取得する
-			// list($width, $hight) = getimagesize($file);
-			// if($width > $hight){
-			
-			// 	$diff  = ($width - $hight) * 0.5; 
-			// 	$diffW = $hight;
-			// 	$diffH = $hight;
-			// 	$diffY = 0;
-			// 	$diffX = $diff;
-			
-			// }elseif($width < $hight){
-		
-			// 	$diff  = ($hight - $width) * 0.5; 
-			// 	$diffW = $width;
-			// 	$diffH = $width;
-			// 	$diffY = $diff;
-			// 	$diffX = 0;
-			
-			// }elseif($width === $hight){
-
-			// 	$diffW = $width;
-			// 	$diffH = $hight;
-			// 	$diffY = 0;
-			// 	$diffX = 0;	
-			// }
-			// //サムネイルのサイズ
-			// $thumbW = 4032;
-			// $thumbH = 3024;
-			// //サムネイルになる土台の画像を作る
-			// $thumbnail = imagecreatetruecolor($thumbW, $thumbH);
-			// //元の画像を読み込む
-			// $baseImage = imagecreatefromjpeg($file);
-			// //サムネイルになる土台の画像に合わせて元の画像を縮小しコピーペーストする
-			// imagecopyresampled($thumbnail, $baseImage, 0, 0, $diffX, $diffY, $thumbW, $thumbH, $diffW, $diffH);
-			// imagejpeg($thumbnail, $_FILES['file_img']['name'], 100);
 			$clean['file_img'] = $_FILES['file_img']['name'];
 		}
 }
@@ -78,19 +41,19 @@ function validation($data) {
 	$error = array();
 	// Titleのバリデーション
 	if( empty($data['title']) ) {
-		$error[] = "「Title」は必ず入力してください。";
+		$error[] = "Require「Title」";
 		}
 		// Textのバリデーション
 	if( empty($data['text']) ) {
-		$error[] = "「Text」は必ず入力してください。";
+		$error[] = "Require「Text」";
 		}
 		// ryokannameのバリデーション
 	if( empty($data['name']) ) {
-		$error[] = "「Name」は必ず入力してください。";
+		$error[] = "Require「Name」";
 		}
 		// 添付ファイルのバリデーション
 	if( $_FILES['file_img']['error'] !== UPLOAD_ERR_OK){
-		$error[] = "「画像」は必ず入力してください。";
+		$error[] = "Require「img」";
 		}
 	return $error;
 }
@@ -202,8 +165,8 @@ function validation($data) {
 <!-- 完了画面 -->
 
 <?php if( $page_flag === 1 ): ?>
-	<p>送信が完了しました。</p>
-	<button class="btn"><a href='/'>戻る</a></button>
+	<p>Upload Complete</p>
+	<button class="btn"><a href='/'>back</a></button>
 <?php
 	$obj = file_get_contents('store.json');
 	$data_array = json_decode($obj);
@@ -246,12 +209,12 @@ function validation($data) {
 		</select>
 	</div>
 	<div class="element_wrap">
-	<label>画像ファイルの添付</label>
+	<label>file</label>
 	<input type="file" name="file_img">
 </div>
 <input type="submit" name="btn_confirm" value="Upload">
 </form>
-	<button class="btn"><a href='/'>戻る</a></button>
+	<button class="btn"><a href='/'>back</a></button>
 <?php endif; ?>
 </body>
 </html>
