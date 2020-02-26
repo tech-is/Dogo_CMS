@@ -146,7 +146,7 @@ if(!empty($array)){
 	<p>画像はまだありません</p>
 	<?php elseif($cnt < 10): ?>
 		<?php for($i=0; $i <= $cnt; $i++): ?>
-			<div class="col-sm-6 portfolio-item">
+			<div class="portfolio-item">
 				<a href="work-details.php?id=<?php echo $array_num[$i] ?>" class="portfolio-link">
 					<!-- ここから画像 -->
 					<div class="caption">
@@ -165,7 +165,7 @@ if(!empty($array)){
 		<?php endfor; ?> 
 	<?php else: ?>
 		<?php for($i=0; $i < 10; $i++): ?>
-			<div class="col-sm-6 portfolio-item">
+			<div class="portfolio-item">
 				<a href="work-details.php?id=<?php echo $array_num[$i] ?>" class="portfolio-link">
 					<!-- ここから画像 -->
 					<div class="caption">
