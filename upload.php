@@ -64,6 +64,7 @@ function validation($data) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <title>Upload Form</title>
 <style rel="stylesheet" type="text/css">
 	body {
@@ -168,8 +169,12 @@ function validation($data) {
 	<p>Upload Complete</p>
 	<button class="btn"><a href='/'>back</a></button>
 <?php
-	$obj = file_get_contents('store.json');
-	$data_array = json_decode($obj);
+	if(file_exists('store.json')){
+		$obj = file_get_contents('store.json');
+		$data_array = json_decode($obj);
+	}else{
+		$data_array=[];
+	}
 	$input = array(
 				'Title' => $_POST['title'],
 				'Text' => $_POST['text'],
@@ -210,11 +215,14 @@ function validation($data) {
 	</div>
 	<div class="element_wrap">
 	<label>file</label>
-	<input type="file" name="file_img">
+	<input type="file" name="file_img" id='myImage' accept="image/*">
+
 </div>
 <input type="submit" name="btn_confirm" value="Upload">
 </form>
 	<button class="btn"><a href='/'>back</a></button>
 <?php endif; ?>
+
+
 </body>
 </html>

@@ -1,7 +1,12 @@
 <?php
 //uploadしたデータを取得する
+if(file_exists('store.json')){
 $data = file_get_contents('store.json');
 $array = json_decode($data);
+}
+else{
+	$array=[];
+}
 if(!empty($array)){
 	$cnt = count($array) - 1;
 	//シャッフルのロジック
